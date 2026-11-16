@@ -1,5 +1,20 @@
 # Downloader CAD
 
+## Baixar
+
+O executável está na página de releases:
+**[DownloaderCAD-portable.zip](https://github.com/Davy-Alves/DownloaderCAD/releases/latest/download/DownloaderCAD-portable.zip)**
+
+1. Baixe o `.zip` e **extraia** em uma pasta (não execute de dentro do zip).
+2. Dê duplo clique em `DownloaderCAD.exe`. Não é preciso instalar Python.
+3. Na primeira execução o Windows pode avisar que o aplicativo não é
+   reconhecido — clique em **Mais informações** e **Executar assim mesmo**. O
+   executável não é assinado digitalmente.
+
+Requisitos: Windows e Google Chrome instalado. É preciso ter login no portal.
+
+## Sobre o projeto
+
 Eu precisava conferir, cliente por cliente, quais solicitações tinham desenho
 CAD no portal e baixar o `.dwg` mais recente de cada uma. Era um trabalho
 repetitivo — abrir a triagem, achar a solicitação, abrir o upload, escolher o
