@@ -8,7 +8,7 @@ O executável está na página de releases:
 1. Baixe o `.zip` e **extraia** em uma pasta (não execute de dentro do zip).
 2. Dê duplo clique em `DownloaderCAD.exe`. Não é preciso instalar Python.
 3. Na primeira execução o Windows pode avisar que o aplicativo não é
-   reconhecido — clique em **Mais informações** e **Executar assim mesmo**. O
+   reconhecido. Clique em **Mais informações** e **Executar assim mesmo**. O
    executável não é assinado digitalmente.
 
 Requisitos: Windows e Google Chrome instalado. É preciso ter login no portal.
@@ -17,8 +17,8 @@ Requisitos: Windows e Google Chrome instalado. É preciso ter login no portal.
 
 Eu precisava conferir, cliente por cliente, quais solicitações tinham desenho
 CAD no portal e baixar o `.dwg` mais recente de cada uma. Era um trabalho
-repetitivo — abrir a triagem, achar a solicitação, abrir o upload, escolher o
-anexo e salvar na pasta certa — e fácil de errar. Escrevi este programa para
+repetitivo e fácil de errar: abrir a triagem, achar a solicitação, abrir o
+upload, escolher o anexo e salvar na pasta certa. Escrevi este programa para
 fazer essa parte sozinho e deixar o resultado na planilha.
 
 O login continua sendo meu: o programa abre o Chrome na tela do portal e espera
@@ -137,48 +137,6 @@ automacao/config.py      configuração local
 tests/                   testes com dublês
 docs/                    decisões, guia do usuário e stack
 ```
-
-## Decisões que tomei
-
-**Login manual.** Não guardo senha nem tento automatizar o login. O programa
-abre o Chrome e espera o clique em "Já estou logado". Isso evita credenciais no
-código e não depende de seletores de uma tela que pode mudar.
-
-**Sessão caída para tudo.** Se o portal derrubar a sessão, a rodada inteira para.
-Continuar depois disso marcaria linhas erradas como `NÃO`.
-
-**Erro deixa a célula em branco.** `NÃO` só significa "consultei e não havia
-DWG". Timeout, erro de rede ou sessão caída não são a mesma coisa.
-
-**A pasta de destino não é criada.** Se ela não existir, o programa aborta. Isso
-evita gravar arquivos fora da pasta que eu uso para sincronizar.
-
-**Só o DWG mais recente.** Cada solicitação pode ter vários anexos; baixar todos
-só aumentaria a pasta sem necessidade.
-
-**Tkinter em vez de painel web.** A interface faz parte da biblioteca padrão, não
-adiciona dependência e não abre porta de rede. O usuário não precisa de terminal
-nem de outro navegador.
-
-**`Controle` separado da janela.** A automação roda em outra thread e não pode
-tocar em Tkinter. O estado, a pausa e o log ficam em `automacao/controle.py`, o
-que também permite testar esses comportamentos sem abrir uma janela.
-
-**Configuração local.** Caminhos, URL do portal e perfil de login ficam em
-`%LOCALAPPDATA%\DownloaderCAD\config.json`, não no repositório.
-
-## O que aprendi
-
-- Automação de portal real é frágil. Seletores, tempos de carregamento e sessão
-  mudam, e a maior parte do trabalho é tratar esses casos, não o caminho feliz.
-- Separá a regra de negócio da interface e do navegador foi o que tornou os
-  testes possíveis sem abrir o site.
-- Erro precisa fazer parte da regra: decidir quando deixar em branco é tão
-  importante quanto decidir quando gravar `SIM` ou `NÃO`.
-- Salvar a planilha a cada cliente protege o progresso, mas exige cuidado com a
-  formatação do arquivo — por isso só regravo quando alguma linha mudou.
-- Empacotar Playwright com PyInstaller exige coletar os arquivos do pacote
-  explicitamente, o que está no `DownloaderCAD.spec`.
 
 ## Limitações
 
