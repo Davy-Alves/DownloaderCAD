@@ -1,0 +1,12 @@
+{
+  "planilha": "",
+  "pasta_downloads": "",
+  "url_portal": "",
+  "perfil_login": "",
+  "chrome_exe": "",
+  "perfil_chrome": "",
+  "porta_cdp": 9222,
+  "limite_clientes": null,
+  "reprocessar_nao": false,
+  "debug": false
+}

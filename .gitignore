@@ -1,0 +1,51 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Dados de terceiros: planilhas, DWG, logs e exportações nunca vão para o Git
+*.xlsx
+*.xls
+*.xlsm
+*.dwg
+*.csv
+*.log
+~$*
+
+# Exceção: modelo de planilha com dados fictícios que pode ser versionado
+!modelo/modelo_planilha.xlsx
+
+# Configuração local de cada máquina e perfil do navegador
+config.json
+config.local.json
+chrome-perfil/
+logs/
+
+# Segredos
+.env
+secrets.*
+*.pem
+*.key
+*.pfx
+
+# Build e artefatos
+dist/
+build/
+*.zip
+*.exe
+
+# Pasta local de trabalho com a planilha de controle
+CONTROLE/
+
+# Configuração de ferramentas de IA
+.opencode/
+.cursor/
+.claude/
+AGENTS.md
+CLAUDE.md
+
+# Arquivos locais de cada máquina
+*.local.*
